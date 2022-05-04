@@ -2,11 +2,18 @@
 #include <iostream>
 #include <vector>
 
+enum class PacketType
+{
+	SetupLogin = 0,
+	Echo = 1,
+};
+
 class Packet
 {
 public:
 	Packet();
 	Packet(char* buff);
+	~Packet();
 	void Write(int data);
 	void Write(const std::string& data);
 	int ReadInt();

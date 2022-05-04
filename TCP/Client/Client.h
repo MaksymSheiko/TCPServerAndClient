@@ -9,7 +9,12 @@
 class Client
 {
 public:
-	Client() : m_socket() , m_address() {}
+	Client()
+		: m_socket() 
+		, m_address() 
+	{
+
+	}
 	~Client()
 	{
 		closesocket(m_socket);

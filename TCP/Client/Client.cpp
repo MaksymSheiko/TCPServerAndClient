@@ -19,10 +19,23 @@ int Client::StartupConnection(const char* address, int port)
 void Client::Listen()
 {
 	std::string message;
+	{
+		std::cout << "Connection established. Enter your nickname:" << std::endl;
+		std::getline(std::cin, message);
+		Packet packet;
+		packet.Write(static_cast<int>(PacketType::SetupLogin));
+		packet.Write(message);
+		packet.WriteLength();
+		if (!Send(std::move(packet)))
+		{
+			return;
+		}
+	}
 	while (true)
 	{
 		std::getline(std::cin, message);
 		Packet packet;
+		packet.Write(static_cast<int>(PacketType::Echo));
 		packet.Write(message);
 		packet.WriteLength();
 		if (!Send(std::move(packet)))

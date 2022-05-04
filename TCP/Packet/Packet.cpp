@@ -19,6 +19,11 @@ Packet::Packet(char* buff)
 	}
 }
 
+Packet::~Packet()
+{
+	m_buff.clear();
+}
+
 int Packet::ReadInt()
 {
 	int toReturn;
